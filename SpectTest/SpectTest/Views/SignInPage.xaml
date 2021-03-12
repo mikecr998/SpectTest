@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpectTest.Views.SignInPage"
+             xmlns:local="clr-namespace:SpectTest.ViewModels">
+    <ContentPage.BindingContext>
+        <local:SignInVM />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Start" Margin="20,50,20,20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+            </Grid>
+
+            <Label 
+                Text="Sign In" 
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Grid.Row="0"/>
+            <Entry 
+                Placeholder="Username"
+                Grid.Row="1"/>
+            <Entry 
+                Placeholder="Password"
+                IsPassword="True"
+                Grid.Row="2"
+                Margin="0,0,0,20"/>
+            <Button 
+                Text="Sign In"
+                CornerRadius="10"
+                BackgroundColor="Blue"
+                FontSize="Medium"
+                TextTransform="None"
+                Grid.Row="3"
+                Margin="0,0,0,50"/>
+            <Button 
+                Text="New User? Create Account"
+                CornerRadius="10"
+                BackgroundColor="LightBlue"
+                TextColor="Black"
+                TextTransform="None"
+                Grid.Row="3"
+                Command="{Binding CreateAccountCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
