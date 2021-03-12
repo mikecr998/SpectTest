@@ -32,6 +32,7 @@ namespace SpectTest.DB
             };
 
             var idUser = await db.InsertAsync(user);
+            var list = await db.Table<User>().ToListAsync();
         }
     }
 }
