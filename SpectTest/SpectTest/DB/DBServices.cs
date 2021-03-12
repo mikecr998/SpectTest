@@ -11,7 +11,6 @@ namespace SpectTest.DB
         static SQLiteAsyncConnection db;
         static async Task Init()
         {
-            // Get an absolute path to the database file
             var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MyBD.db");
             db = new SQLiteAsyncConnection(databasePath);
 
