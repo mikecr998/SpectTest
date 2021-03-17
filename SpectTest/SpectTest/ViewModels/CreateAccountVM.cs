@@ -28,7 +28,7 @@ namespace SpectTest.ViewModels
         {
             await DBServices.AddUser(FirstName, LastName, Phone, Username, Password, Date);
             await _pageServices.DisplayAlert("Warning", "New user added", "Ok");
-            await _pageServices.PushAsync(new SignInPage());
+            await _pageServices.PopAsync();
         }
 
         public string FirstName
@@ -100,9 +100,7 @@ namespace SpectTest.ViewModels
                 _enableBtn = value;
                 OnPropertyChangedEventHandler("EnableBtn");
             }
-        }
-
-        
+        }       
 
         void btnCreateAccountValidation()
         {
