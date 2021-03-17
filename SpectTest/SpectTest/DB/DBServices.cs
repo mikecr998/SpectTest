@@ -36,6 +36,7 @@ namespace SpectTest.DB
 
             var idUser = await db.InsertAsync(user);
             var list = await db.Table<User>().ToListAsync();
+<<<<<<< HEAD
         }
 
         public static async Task<string[]> GetUser(string _username, string _password)
@@ -64,6 +65,8 @@ namespace SpectTest.DB
                 return response;
             }
             
+=======
+>>>>>>> 418a6627c4a2bb78a0be14c2e983dce638c4c151
         }
     }
 }
