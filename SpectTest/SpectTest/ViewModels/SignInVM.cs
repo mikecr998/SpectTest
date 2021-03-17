@@ -51,7 +51,7 @@ namespace SpectTest.ViewModels
             string[] response = await DBServices.GetUser(Username, Password);
             if(response[0] == "ERROR")
             {
-                await _pageServices.DisplayAlert("Warnin", response[1], "OK");
+                await _pageServices.DisplayAlert("Warning", response[1], "OK");
                 return;
             }
             await _pageServices.PushAsync(new SuccessfulSignInPage(response[1]));
