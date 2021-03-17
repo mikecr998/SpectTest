@@ -54,7 +54,9 @@ namespace SpectTest.ViewModels
                 await _pageServices.DisplayAlert("Warning", response[1], "OK");
                 return;
             }
-            await _pageServices.PushAsync(new SuccessfulSignInPage(response[1]));
+            //await _pageServices.PushAsync(new SuccessfulSignInPage(response[1]));
+            App.Current.MainPage = new NavigationPage(new SuccessfulSignInPage(response[1]));
+
         }
         public Command CreateAccountCommand { get; set; }
         public Command GetUserCommand { get; set; }
