@@ -5,22 +5,18 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using SpectTest.Views;
 using SpectTest.Services;
-using System.ComponentModel;
 using SpectTest.DB;
-using SpectTest.Models;
 
 namespace SpectTest.ViewModels
 {
-    public class SignInVM : INotifyPropertyChanged
+    public class SignInVM : BaseViewModel
     {
-        private User userClass;
         public string _username = "", _password = "";
-        private IPageServices _pageServices = new PageServices();
 
         public SignInVM()
         {
             CreateAccountCommand = new Command(async () => await CreateAccount());
-            GetUserCommand = new Command(async () => await GetUser());
+            GetUserCommand = new Command(async () => await SignIn());
         }
 
         public string Username
@@ -45,8 +41,21 @@ namespace SpectTest.ViewModels
         {
             await _pageServices.PushAsync(new CreateAccountPage());
         }
+        public string UserLogged
+        {
+            get => Settings.UserLogged;
+            set
+            {
+                if (Settings.UserLogged == value)
+                    return;
 
-        public async Task GetUser()
+                Settings.UserLogged = value;
+                OnPropertyChangedEventHandler("UserLogged");
+            }
+
+        }
+
+        public async Task SignIn()
         {
             string[] response = await DBServices.GetUser(Username, Password);
             if(response[0] == "ERROR")
@@ -55,19 +64,11 @@ namespace SpectTest.ViewModels
                 return;
             }
             //await _pageServices.PushAsync(new SuccessfulSignInPage(response[1]));
-            App.Current.MainPage = new NavigationPage(new SuccessfulSignInPage(response[1]));
+            UserLogged = response[1];
+            App.Current.MainPage = new NavigationPage(new SuccessfulSignInPage());
 
-        }
+     }
         public Command CreateAccountCommand { get; set; }
         public Command GetUserCommand { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChangedEventHandler(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
     }
 }

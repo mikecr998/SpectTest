@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SpectTest.Views.CreateAccountPage"
-             xmlns:local="clr-namespace:SpectTest.ViewModels">
+             xmlns:controls="clr-namespace:SpectTest.Controls;assembly=SpectTest"
+             xmlns:local="clr-namespace:SpectTest.ViewModels"
+             BackgroundColor="#1D475F">
     <ContentPage.BindingContext>
         <local:CreateAccountVM/>
     </ContentPage.BindingContext>
@@ -17,6 +19,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
             </Grid>
 
@@ -25,39 +28,71 @@
                 FontSize="Large"
                 HorizontalOptions="Center"
                 Grid.Row="0"/>
-            <Entry 
-                Placeholder="First Name"
+            <controls:CustomEntry 
                 Grid.Row="1"
-                Text="{Binding FirstName}"/>
-            <Entry 
-                Placeholder="Last Name"
+                BorderColor="#1c9eb4"
+                Padding="0"
+                CornerRadius="50"
+                Source="user2.png"
+                Placeholder="First Name"
+                PlaceholderColor="LightSlateGray"
+                Text="{Binding FirstName}"
+                ControlTemplate="{StaticResource CustomEntry}"/>
+            <controls:CustomEntry 
                 Grid.Row="2"
-                Text="{Binding LastName}"/>
-            <Entry 
-                Placeholder="Username"
+                BorderColor="#1c9eb4"
+                Padding="0"
+                CornerRadius="50"
+                Source="user2.png"
+                Placeholder="Last Name"
+                PlaceholderColor="LightSlateGray"
+                Text="{Binding LastName}"
+                ControlTemplate="{StaticResource CustomEntry}"/>
+            <controls:CustomEntry 
                 Grid.Row="3"
-                Text="{Binding Username}"/>
-            <Entry 
-                Placeholder="Password"
-                IsPassword="True"
-                MaxLength="15"
+                BorderColor="#1c9eb4"
+                Padding="0"
+                CornerRadius="50"
+                Source="user.png"
+                Placeholder="Username"
+                PlaceholderColor="LightSlateGray"
+                Text="{Binding Username}"
+                ControlTemplate="{StaticResource CustomEntry}"/>
+            <controls:CustomEntry 
                 Grid.Row="4"
-                Text="{Binding Password}"/>
-            <Entry 
-                Placeholder="Phone Number"
-                Keyboard="Telephone"
+                BorderColor="#1c9eb4"
+                Padding="0"
+                CornerRadius="50"
+                Source="pwd.png"
+                Placeholder="Password"
+                PlaceholderColor="LightSlateGray"
+                Password="true"
+                Text="{Binding Password}"
+                ControlTemplate="{StaticResource CustomEntry}"/>
+            <controls:CustomEntry 
                 Grid.Row="5"
-                Text="{Binding Phone}"/>
-            <DatePicker 
-                TextColor="Black"
+                BorderColor="#1c9eb4"
+                Padding="0"
+                CornerRadius="50"
+                Source="phone.png"
+                Placeholder="Phone Number"
+                PlaceholderColor="LightSlateGray"
+                KeyboardType="Telephone"
+                Text="{Binding Phone}"
+                ControlTemplate="{StaticResource CustomEntry}"/>
+            <controls:CustomDatePicker
+                Date="{Binding Date}"
                 Grid.Row="6"
-                Margin="0,0,0,20"/>
+                BackgroundColor="Transparent"
+                BorderColor="#1c9eb4"
+                ImageSource="calendar.png"
+                Padding="0"
+                CornerRadius="50"
+                PlaceholderColor="LightSlateGray"
+                ControlTemplate="{StaticResource CustomDatePicker}"/>
             <Button 
+                Style="{StaticResource btnPrimary}"
                 Text="Create Account"
-                CornerRadius="10"
-                BackgroundColor="Blue"
-                FontSize="Medium"
-                TextTransform="None"
                 Command="{Binding InsertUserCommand}"
                 IsEnabled="{Binding EnableBtn}"
                 Grid.Row="7"/>

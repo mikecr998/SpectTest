@@ -1,8 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SpectTest.App">
+             x:Class="SpectTest.App"
+             xmlns:borderlessEntry="clr-namespace:SpectTest.CustomControls"
+             xmlns:borderlessDatePicker="clr-namespace:SpectTest.CustomControls">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <ControlTemplate x:Key="CustomEntry">
+                <Frame BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+                    VerticalOptions="Center"
+                    BackgroundColor="Transparent"
+                    BorderColor="{TemplateBinding BorderColor}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Padding="{TemplateBinding Padding}">
+                    <StackLayout
+                        Margin="20,0,20,0"
+                        Orientation="Horizontal"
+                        HorizontalOptions="Fill">
+                        <Image Source="{TemplateBinding Source}" WidthRequest="20"/>
+                        <borderlessEntry:BorderlessEntry
+                            Placeholder="{TemplateBinding Placeholder}"
+                            PlaceholderColor="{TemplateBinding PlaceholderColor}"
+                            Text="{TemplateBinding Text}"
+                            IsPassword="{TemplateBinding Password}"
+                            Keyboard="{TemplateBinding KeyboardType}"
+                            HorizontalOptions="FillAndExpand"
+                        />
+                    </StackLayout>
+                </Frame>
+            </ControlTemplate>
+            <ControlTemplate x:Key="CustomDatePicker">
+                <Frame BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+                    VerticalOptions="Center"
+                    BackgroundColor="Transparent"
+                    BorderColor="{TemplateBinding BorderColor}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Padding="{TemplateBinding Padding}">
+                    <StackLayout
+                        Margin="20,0,20,0"
+                        Orientation="Horizontal"
+                        HorizontalOptions="Fill">
+                        <Image Source="{TemplateBinding ImageSource}" WidthRequest="20"/>
+                        <borderlessDatePicker:BorderlessDatePicker 
+                            Date="{TemplateBinding Date}"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="Transparent"
+                            TextColor="{TemplateBinding PlaceholderColor}"
+                        />
+                    </StackLayout>
+                </Frame>
+            </ControlTemplate>
+            <Style x:Key="btnPrimary" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BorderRadius" Value="50" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#1c9eb4" />
+                <Setter Property="TextTransform" Value="None" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="Margin" Value="0,20,0,0" />
+            </Style>
+            <Style x:Key="btnSingOut" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="WidthRequest" Value="250" />
+                <Setter Property="BorderColor" Value="#1c9eb4" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="BorderRadius" Value="50" />
+                <Setter Property="TextColor" Value="#1c9eb4" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextTransform" Value="None" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="Margin" Value="0,20,0,0" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,12 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SpectTest.Views.SuccessfulSignInPage">
+             x:Class="SpectTest.Views.SuccessfulSignInPage" BackgroundColor="#1D475F">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-            <Label 
+        <StackLayout HorizontalOptions="Fill" VerticalOptions="Center" Margin="20,20,20,20">
+            <Label
+                HorizontalOptions="Center"
                 Text="{Binding Username}"
                 FontSize="Large"/>
+            <Button 
+                Style="{StaticResource btnSingOut}"
+                Text="Sign Out"
+                Command="{Binding SignOutCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

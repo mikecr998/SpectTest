@@ -1,27 +1,23 @@
 ﻿using System;
-using System.ComponentModel;
 using Xamarin.Forms;
 using SpectTest.DB;
-using SpectTest.Views;
-using SpectTest.Services;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 
 namespace SpectTest.ViewModels
 {
-    public class CreateAccountVM : INotifyPropertyChanged
+    public class CreateAccountVM : BaseViewModel
     {
         public string _firstName = "", _lastName = "", _username = "", _password = "", _phone = "";
         public DateTime _date;
-        public bool _enableBtn = false;
+        public bool _enableBtn = false, _firstNameWarning = false, _lastNameWarning = false;
 
-        private IPageServices _pageServices = new PageServices();
         public ICommand InsertUserCommand { get; }
 
         public CreateAccountVM()
         {
             InsertUserCommand = new Command(async () => await InsertUser());
-
         }
 
         async Task InsertUser()
@@ -38,6 +34,7 @@ namespace SpectTest.ViewModels
             {
                 _firstName = value;
                 OnPropertyChangedEventHandler("FirstName");
+                FirstNameValidation();
                 btnCreateAccountValidation();
             }
         }
@@ -48,6 +45,7 @@ namespace SpectTest.ViewModels
             {
                 _lastName = value;
                 OnPropertyChangedEventHandler("LastName");
+                LastNameValidation();
                 btnCreateAccountValidation();
             }
         }
@@ -91,7 +89,6 @@ namespace SpectTest.ViewModels
                 btnCreateAccountValidation();
             }
         }
-
         public bool EnableBtn
         {
             get => _enableBtn;
@@ -102,9 +99,28 @@ namespace SpectTest.ViewModels
             }
         }       
 
+        public bool FirstNameWarning
+        {
+            get => _firstNameWarning;
+            set
+            {
+                _firstNameWarning = value;
+                OnPropertyChangedEventHandler("FirstNameWarning");
+            }
+        }
+        public bool LastNameWarning
+        {
+            get => _lastNameWarning;
+            set
+            {
+                _lastNameWarning = value;
+                OnPropertyChangedEventHandler("LastNameWarning");
+            }
+        }
+
         void btnCreateAccountValidation()
         {
-            if (FirstName != "" && LastName != "" && Phone != "" && Username != "" && Password != "" && Date != null)
+            if (FirstName != "" && LastName != "" && Phone != "" && Username != "" && Password != "" && Date != null && !FirstNameValidation() && !LastNameValidation())
             {
                 EnableBtn = true;
             } else
@@ -112,15 +128,33 @@ namespace SpectTest.ViewModels
                 EnableBtn = false;
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChangedEventHandler(string name)
+        public bool FirstNameValidation()
         {
-            if (PropertyChanged != null)
+            Regex regex = new Regex("^[a-zA-Z]+$");
+            if (regex.IsMatch(FirstName) || FirstName == "")
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+                FirstNameWarning = false;
+                return false;
+            }
+            else
+            {
+                FirstNameWarning = true;
+                return true;
+            }            
+        }
+        public bool LastNameValidation()
+        {
+            Regex regex = new Regex("^[a-zA-Z]+$");
+            if (regex.IsMatch(LastName) || LastName == "")
+            {
+                LastNameWarning = false;
+                return false;
+            }
+            else
+            {
+                LastNameWarning = true;
+                return true;
             }
         }
-
     }
 }
