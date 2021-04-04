@@ -11,6 +11,7 @@
                     VerticalOptions="Center"
                     BackgroundColor="Transparent"
                     BorderColor="{TemplateBinding BorderColor}"
+                    HeightRequest="50"
                     CornerRadius="{TemplateBinding CornerRadius}"
                     Padding="{TemplateBinding Padding}">
                     <StackLayout
@@ -25,6 +26,7 @@
                             IsPassword="{TemplateBinding Password}"
                             Keyboard="{TemplateBinding KeyboardType}"
                             HorizontalOptions="FillAndExpand"
+                            TextColor="White"
                         />
                     </StackLayout>
                 </Frame>
@@ -33,6 +35,7 @@
                 <Frame BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                     VerticalOptions="Center"
                     BackgroundColor="Transparent"
+                    HeightRequest="50"
                     BorderColor="{TemplateBinding BorderColor}"
                     CornerRadius="{TemplateBinding CornerRadius}"
                     Padding="{TemplateBinding Padding}">
@@ -53,7 +56,8 @@
             <Style x:Key="btnPrimary" TargetType="Button">
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="BorderRadius" Value="50" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="BorderRadius" Value="25" />
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="BackgroundColor" Value="#1c9eb4" />
                 <Setter Property="TextTransform" Value="None" />
@@ -63,15 +67,18 @@
             <Style x:Key="btnSingOut" TargetType="Button">
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="WidthRequest" Value="250" />
+                <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="BorderColor" Value="#1c9eb4" />
                 <Setter Property="BorderWidth" Value="1" />
-                <Setter Property="BorderRadius" Value="50" />
+                <Setter Property="BorderRadius" Value="25" />
                 <Setter Property="TextColor" Value="#1c9eb4" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="TextTransform" Value="None" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="Margin" Value="0,20,0,0" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

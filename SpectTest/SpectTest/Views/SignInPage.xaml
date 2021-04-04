@@ -23,13 +23,14 @@
             <Label 
                 Text="Sign In" 
                 FontSize="Large"
+                TextColor="White"
                 HorizontalOptions="Center"
                 Grid.Row="0"/>
             <controls:CustomEntry 
                 Grid.Row="1"
                 BorderColor="#1c9eb4"
                 Padding="0"
-                CornerRadius="50"
+                CornerRadius="25"
                 Source="user.png"
                 Placeholder="Username"
                 PlaceholderColor="LightSlateGray"
@@ -39,7 +40,7 @@
                 Grid.Row="2"
                 BorderColor="#1c9eb4"
                 Padding="0"
-                CornerRadius="50"
+                CornerRadius="25"
                 Source="pwd.png"
                 Placeholder="Password"
                 PlaceholderColor="LightSlateGray"
@@ -53,7 +54,6 @@
                 Grid.Row="3"/>
             <Button 
                 Text="New user? Create account"
-                CornerRadius="50"
                 HorizontalOptions="Center"
                 VerticalOptions="EndAndExpand"
                 Margin="0,0,0,30"
